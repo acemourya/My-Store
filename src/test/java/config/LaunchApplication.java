@@ -5,6 +5,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -26,8 +27,7 @@ public class LaunchApplication {
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
             String url = prop.getProperty("host");
             driver.get(url);
-        }
-        catch (IOException exception) {
+        } catch (IOException exception) {
             log.info(exception);
         }
     }
@@ -35,9 +35,8 @@ public class LaunchApplication {
     public void teardown() {
         try {
             driver.quit();
-        }
-        catch (Exception e) {
-            log.info("Close driver failed and throw Exception: "+e);
+        } catch (Exception e) {
+            log.info("Close driver failed and throw Exception: " + e);
         }
     }
 }

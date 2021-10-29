@@ -14,6 +14,7 @@ public class LoginPage {
 
     LoginMap loginMap = new LoginMap();
     LaunchApplication launchApplication = new LaunchApplication();
+    CommonPage commonPage = new CommonPage();
 
     public static WebDriver driver;
     public static Logger log = Logger.getLogger(LoginPage.class);
@@ -33,13 +34,12 @@ public class LoginPage {
     }
 
     public void signUp(String fistName, String lastName, String email, String password, String address,
-                       String city,String state,  String postCode, String mobileNumber, String expected) {
+                       String city, String state, String postCode, String mobileNumber, String expected) {
         boolean confirmation = true;
         boolean expectedResult = Boolean.parseBoolean(expected);
         try {
             driver = LaunchApplication.driver;
             JavascriptExecutor js = (JavascriptExecutor) driver;
-
             driver.findElement(loginMap.signIn()).click();
             driver.findElement(loginMap.signUpEmailField()).sendKeys(email);
             driver.findElement(loginMap.createAnAccountButton()).click();
@@ -55,12 +55,13 @@ public class LoginPage {
             driver.findElement(loginMap.postCodeField()).sendKeys(postCode);
             driver.findElement(loginMap.mobilePhoneField()).sendKeys(mobileNumber);
             driver.findElement(loginMap.submitAccountButton()).click();
+            commonPage.productOrder();
         } catch (Exception e) {
             confirmation = false;
-            Assert.assertEquals(confirmation, expectedResult);
             String error = "Warning..! User sign up failed. Due to invalid user details thrown exception :" + e;
             log.info(error);
             launchApplication.teardown();
         }
+        Assert.assertEquals(confirmation, expectedResult);
     }
 }

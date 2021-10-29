@@ -16,6 +16,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -23,34 +24,25 @@ public class OrderTest {
 
     LoginPage loginPage = new LoginPage();
     LaunchApplication launchApplication = new LaunchApplication();
-    DressesPage dressesPage = new DressesPage();
-    TShirtsPage tShirtsPage = new TShirtsPage();
-    CommonPage commonPage = new CommonPage();
 
     /**
-     * @param fistName: User first name
-     * @param lastName: User last name
-     * @param email: User email Id
-     * @param password: User password
-     * @param address: User address
-     * @param city: User address city
-     * @param state: User address state
-     * @param postCode: User address pass code or zip code
+     * @param fistName:     User first name
+     * @param lastName:     User last name
+     * @param email:        User email Id
+     * @param password:     User password
+     * @param address:      User address
+     * @param city:         User address city
+     * @param state:        User address state
+     * @param postCode:     User address pass code or zip code
      * @param mobileNumber: User mobile number
      */
     @Test(dataProvider = "userData")
-    public void order(
+    public void OrderConfirmation(
             String fistName, String lastName, String email, String password, String address,
-            String city,String state, String postCode, String mobileNumber, String expectedResult)  {
+            String city, String state, String postCode, String mobileNumber, String expectedResult) {
         launchApplication.launchApplication();
         loginPage.signUp(fistName, lastName, email, password, address,
                 city, state, postCode, mobileNumber, expectedResult);
-        dressesPage.addDressIntoCart();
-        tShirtsPage.addTShirtIntoCart();
-        commonPage.summary();
-        commonPage.address();
-        commonPage.shipping();
-        commonPage.payment();
     }
 
     @DataProvider(name = "userData")
@@ -59,15 +51,15 @@ public class OrderTest {
         return data;
     }
 
-    /** @param xlFilePath  excel file path
+    /**
+     * @param xlFilePath excel file path
      * @param sheetName  sheet name in xlsx file
      * @return excel data
      * @throws InvalidFormatException
      * @throws IOException
      */
-    public Object[][] testData(String xlFilePath, String sheetName) throws InvalidFormatException, IOException
-    {
-        FileInputStream file= new FileInputStream(xlFilePath);
+    public Object[][] testData(String xlFilePath, String sheetName) throws InvalidFormatException, IOException {
+        FileInputStream file = new FileInputStream(xlFilePath);
         XSSFWorkbook wb = new XSSFWorkbook(file);
         XSSFSheet sheet = wb.getSheetAt(0);
         int rowCount = sheet.getLastRowNum();

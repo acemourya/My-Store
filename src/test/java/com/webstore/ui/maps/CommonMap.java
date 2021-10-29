@@ -17,22 +17,34 @@ public class CommonMap {
     }
 
     public By proceedToCheckoutButtonOnSummaryTab() {
-        return By.cssSelector(".button.btn.btn-default.standard-checkout.button-medium");}
+        return By.cssSelector(".button.btn.btn-default.standard-checkout.button-medium");
+    }
 
-    public By proceedToCheckoutButtonOnAddressTab() { return By.cssSelector("button.btn.btn-default.button-medium");}
+    public By proceedToCheckoutButtonOnAddressTab() {
+        return By.cssSelector("button.btn.btn-default.button-medium");
+    }
 
     public By proceedToCheckoutButtonOnShippingTab() {
-        return By.cssSelector(".button.btn.btn-default.standard-checkout.button-medium");}
+        return By.cssSelector(".button.btn.btn-default.standard-checkout.button-medium");
+    }
 
-    public By termOfServiceCheckBoxOnShippingTab() { return By.cssSelector("#cgv");}
+    public By termOfServiceCheckBoxOnShippingTab() {
+        return By.cssSelector("#cgv");
+    }
 
-    public By paymentProceedThroughPayByBankWire() { return By.cssSelector(".bankwire");}
+    public By paymentProceedThroughPayByBankWire() {
+        return By.cssSelector(".bankwire");
+    }
 
     public By confirmOrderButtonOnPaymentTab() {
-        return By.cssSelector("button.button.btn.btn-default.button-medium");}
+        return By.cssSelector("button.button.btn.btn-default.button-medium");
+    }
 
-    public By confirmationOrderHeading() { return By.cssSelector("#center_column>h1");}
+    public By confirmationOrderHeading() {
+        return By.cssSelector("#center_column>h1");
+    }
 
-    public By confirmedOrder() { return By.cssSelector("#center_column>div>p>strong");}
-
+    public By confirmedOrder() {
+        return By.cssSelector("#center_column>div>p>strong");
+    }
 }
